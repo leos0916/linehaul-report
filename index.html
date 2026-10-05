@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>?슋 ?쇱씤? 媛꾩꽑李⑤웾 蹂닿퀬 ?앹꽦湲?/title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --start-color: #0284c7;
+      --end-color: #e11d48;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      padding-bottom: 60px;
+    }
+
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ?ㅼ젙 ?⑤꼸 */
+    .settings-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 600;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    /* ?쒖옉 / 醫낅즺 ?좉? ??*/
+    .tab-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active.start {
+      background: #fff;
+      color: var(--start-color);
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
+    }
+
+    .tab-btn.active.end {
+      background: #fff;
+      color: var(--end-color);
+      box-shadow: 0 2px 8px rgba(225, 29, 72, 0.2);
+    }
+
+    /* 李⑤웾 移대뱶 由ъ뒪??*/
+    .vehicle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .vehicle-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      transition: transform 0.1s;
+    }
+
+    .vehicle-card:active {
+      transform: scale(0.98);
+    }
+
+    .vehicle-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vehicle-badge {
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .vehicle-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .copy-btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn.start {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    .copy-btn.end {
+      background: #e11d48;
+      color: #fff;
+    }
+
+    /* ?좎뒪???뚮┝ */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 99px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>?슋 ?쇱씤? 蹂닿퀬 ?앹꽦湲?/h1>
+      <p>?ㅻ뒛 ?좎쭨 ?먮룞 諛섏쁺 ??1珥?留뚯뿉 ?대┰蹂대뱶 蹂듭궗</p>
+    </header>
+
+    <!-- ?ㅼ젙 移대뱶 (?ㅻ뒛 ?좎쭨 ?먮룞 ?낅젰) -->
+    <div class="settings-card">
+      <div class="input-row">
+        <div class="form-group" style="flex: 1.2;">
+          <label class="form-label" for="reportDate">?뱟 異쒓렐?쇱옄 (?ㅻ뒛 ?먮룞)</label>
+          <input type="date" id="reportDate">
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label class="form-label" for="driverName">?뫀 ?댄뻾?대떦??/label>
+          <input type="text" id="driverName" value="?좎듅李?>
+        </div>
+      </div>
+      <div class="input-row" style="margin-top: 8px;">
+        <div class="form-group" style="flex: 1;">
+          <label class="form-label" for="fuelStatus">??二쇱쑀 ?щ? (?좏깮)</label>
+          <input type="text" id="fuelStatus" placeholder="鍮꾩썙?먭굅???낅젰">
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label class="form-label" for="notes">?뱷 ?뱀씠?ы빆 (?좏깮)</label>
+          <input type="text" id="notes" placeholder="鍮꾩썙?먭굅???낅젰">
+        </div>
+      </div>
+    </div>
+
+    <!-- ?쒖옉 / 醫낅즺 ??-->
+    <div class="tab-container">
+      <button class="tab-btn active start" id="tabStart" onclick="setMode('start')">
+        ?윟 ?쒖옉 蹂닿퀬
+      </button>
+      <button class="tab-btn end" id="tabEnd" onclick="setMode('end')">
+        ?뵶 醫낅즺 蹂닿퀬
+      </button>
+    </div>
+
+    <!-- ?몄감 由ъ뒪??-->
+    <div class="vehicle-list" id="vehicleList"></div>
+  </div>
+
+  <!-- ?좎뒪???뚮┝李?-->
+  <div class="toast" id="toast">
+    <span>??/span>
+    <span id="toastMsg">蹂듭궗?섏뿀?듬땲??</span>
+  </div>
+
+  <script>
+    const vehicles = [
+      { num: "1?몄감", plate: "寃쎄린88諛?355", phone: "010-9781-4227" },
+      { num: "2?몄감", plate: "寃쎄린88諛?202", phone: "010-9781-4208" },
+      { num: "3?몄감", plate: "寃쎄린88諛?241", phone: "010-9781-4364" },
+      { num: "4?몄감", plate: "寃쎄린88諛?240", phone: "010-9781-4317" },
+      { num: "5?몄감", plate: "寃쎄린88諛?183", phone: "010-9781-4326" },
+      { num: "6?몄감", plate: "寃쎄린88諛?180", phone: "010-9781-4337" },
+      { num: "7?몄감", plate: "寃쎄린88諛?173", phone: "010-9781-4213" },
+      { num: "9?몄감", plate: "寃쎄린88諛?229", phone: "010-9781-4359" },
+      { num: "10?몄감", plate: "寃쎄린88諛?230", phone: "010-9781-4358" }
+    ];
+
+    let currentMode = 'start';
+
+    function initDate() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      document.getElementById('reportDate').value = `${year}-${month}-${day}`;
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const tabStart = document.getElementById('tabStart');
+      const tabEnd = document.getElementById('tabEnd');
+
+      if (mode === 'start') {
+        tabStart.className = 'tab-btn active start';
+        tabEnd.className = 'tab-btn end';
+      } else {
+        tabStart.className = 'tab-btn start';
+        tabEnd.className = 'tab-btn active end';
+      }
+
+      renderList();
+    }
+
+    function renderList() {
+      const listEl = document.getElementById('vehicleList');
+      const isStart = currentMode === 'start';
+
+      listEl.innerHTML = vehicles.map((v, index) => `
+        <div class="vehicle-card">
+          <div class="vehicle-info">
+            <div class="vehicle-title">
+              ??${v.num}
+              <span class="vehicle-badge">${v.plate}</span>
+            </div>
+            <div class="vehicle-sub">?뱸 ${v.phone}</div>
+          </div>
+          <button class="copy-btn ${isStart ? 'start' : 'end'}" onclick="copyReport(${index})">
+            ?뱥 ${isStart ? '?쒖옉' : '醫낅즺'} 蹂듭궗
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function copyReport(index) {
+      const v = vehicles[index];
+      const isStart = currentMode === 'start';
+      const dateVal = document.getElementById('reportDate').value;
+      const driverVal = document.getElementById('driverName').value.trim() || '?좎듅李?;
+      const fuelVal = document.getElementById('fuelStatus').value.trim();
+      const noteVal = document.getElementById('notes').value.trim();
+
+      const certVal = isStart ? '遺덉텧' : '諛섎궔';
+      const titleType = isStart ? '?쒖옉' : '醫낅즺';
+
+      const reportText = `[ISN_1] 媛꾩꽑李⑤웾 ?댄뻾 ${titleType} 蹂닿퀬 \n\n` +
+        `1. 異쒓렐?쇱옄 : ${dateVal} \n` +
+        `2. ?댄뻾?대떦??: ${driverVal} \n` +
+        `3. CLS ??뺤감???쇱씪 ?먭? ?쒕쿋??: ?묒꽦?꾨즺 \n` +
+        `4. ?댄뻾李⑤웾 : ${v.plate}(${v.num}) \n` +
+        `5. ?낅Т?곕쾲??: ${v.phone} \n` +
+        `6. 二쇱쑀移대뱶 ?좊Т ?뺤씤 : ?뺤씤?꾨즺 \n` +
+        `7. 二쇱쑀 ?щ? : ${fuelVal}\n` +
+        `8. 二쇱쑀援????붿냼?????좊Т ?뺤씤 : ?뺤씤?꾨즺 \n` +
+        `9. ?붾Ъ醫낆궗?먭꺽利?(遺덉텧/諛섎궔) : ${certVal} \n` +
+        `10. ?뱀씠?ы빆 : ${noteVal}`;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(reportText).then(() => {
+          showToast(`??[${v.num}] ${titleType} 蹂닿퀬 蹂듭궗 ?꾨즺!`);
+        }).catch(() => fallbackCopy(reportText, v.num, titleType));
+      } else {
+        fallbackCopy(reportText, v.num, titleType);
+      }
+    }
+
+    function fallbackCopy(text, num, type) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(`??[${num}] ${type} 蹂닿퀬 蹂듭궗 ?꾨즺!`);
+      } catch (err) {
+        prompt('?꾨옒 ?댁슜??蹂듭궗?섏꽭??', text);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    initDate();
+    renderList();
+  </script>
+</body>
+</html>
